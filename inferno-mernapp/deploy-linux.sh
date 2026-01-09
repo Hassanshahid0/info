@@ -3,8 +3,8 @@ set -e
 if [ -z "${MONGO_URI:-}" ] || [ -z "${JWT_SECRET:-}" ]; then echo "MONGO_URI and JWT_SECRET required"; exit 1; fi
 PORT="${PORT:-5000}"
 FRONT_PORT="${FRONT_PORT:-5173}"
-CLIENT_ORIGIN="${CLIENT_ORIGIN:-http://4.251.118.253:${FRONT_PORT}}"
-API_BASE="${VITE_API_BASE:-http://4.251.118.253:${PORT}}"
+CLIENT_ORIGIN="${CLIENT_ORIGIN:-http://4.233.94.105:${FRONT_PORT}}"
+API_BASE="${VITE_API_BASE:-http://4.233.94.105:${PORT}}"
 if ! command -v curl >/dev/null 2>&1; then sudo apt-get update -y; sudo apt-get install -y curl; fi
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -31,5 +31,5 @@ cd ../frontend
 pm2 start serve --name snapshare-frontend -- -s dist -l "$FRONT_PORT"
 pm2 save
 sudo pm2 startup systemd -u "$USER" --hp "$HOME"
-echo "Backend: http://4.251.118.253:$PORT"
-echo "Frontend: http://4.251.118.253:$FRONT_PORT"
+echo "Backend: http://4.233.94.105:$PORT"
+echo "Frontend: http://4.233.94.105:$FRONT_PORT"

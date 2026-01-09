@@ -1,9 +1,9 @@
 // api.js - Keep the same, just update if needed
 import axios from 'axios';
 
-const API_BASE = import.meta.env.PROD
-  ? window.location.origin
-  : (import.meta.env.VITE_API_BASE || 'http://localhost:5000');
+const API_BASE = (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim())
+  ? import.meta.env.VITE_API_BASE
+  : (import.meta.env.PROD ? window.location.origin : 'http://localhost:5000');
 
 const api = axios.create({
   baseURL: API_BASE,
